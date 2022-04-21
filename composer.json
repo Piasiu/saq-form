@@ -1,0 +1,23 @@
+{
+    "name": "piasiu/saq-form",
+    "type": "extension",
+    "description": "Extension to the Saq framework for form support",
+    "keywords": ["piasiu","saq","form","field","extension"],
+    "homepage": "https://github.com/Piasiu/saq-form",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Paweł Piaskowy",
+            "email": "pawel@piaskowy.net",
+            "homepage": "http://piaskowy.net"
+        }
+    ],
+    "require": {
+        "php": ">=8.0.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Saq\\Form\\": "src"
+        }
+    }
+}
