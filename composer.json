@@ -1,6 +1,6 @@
 {
     "name": "piasiu/saq-form",
-    "type": "extension",
+    "type": "library",
     "description": "Extension to the Saq framework for form support",
     "keywords": ["piasiu","saq","form","field","extension"],
     "homepage": "https://github.com/Piasiu/saq-form",
@@ -19,5 +19,7 @@
         "psr-4": {
             "Saq\\Form\\": "src"
         }
-    }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
