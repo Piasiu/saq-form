@@ -58,7 +58,7 @@ class MultiField extends FormElement implements FieldInterface, ArrayAccess, Cou
     /**
      * @return Field
      */
-    public function createField(): Field
+    public function createField(): FieldInterface
     {
         $field = call_user_func($this->factory);
         $field->setParent($this);
