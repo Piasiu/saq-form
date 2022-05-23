@@ -26,7 +26,13 @@ class CsrfField extends FormElement implements FieldInterface
     public function __construct(string $salt)
     {
         $this->salt = $salt;
-        $_SESSION['csrf'][$salt] = '';
+
+        if (!array_key_exists('csrf', $_SESSION) || !array_key_exists($salt, $_SESSION['csrf']))
+        {
+            $_SESSION['csrf'][$salt] = '';
+        }
+
+        $this->formName = $this->getName();
     }
 
     /**
@@ -76,7 +82,7 @@ class CsrfField extends FormElement implements FieldInterface
      */
     public function isValid(): bool
     {
-        if ($this->value === $_SESSION['csrf'][$this->salt])
+        if ($this->value == $_SESSION['csrf'][$this->salt])
         {
             return true;
         }
