@@ -6,6 +6,7 @@ use ArrayIterator;
 use Countable;
 use IteratorAggregate;
 use JetBrains\PhpStorm\Pure;
+use RuntimeException;
 use Saq\Form\Interface\FieldInterface;
 
 class MultiField extends FormElement implements FieldInterface, ArrayAccess, Countable, IteratorAggregate
@@ -56,16 +57,6 @@ class MultiField extends FormElement implements FieldInterface, ArrayAccess, Cou
     }
 
     /**
-     * @return Field
-     */
-    public function createField(): FieldInterface
-    {
-        $field = call_user_func($this->factory);
-        $field->setParent($this);
-        return $field;
-    }
-
-    /**
      * @inheritDoc
      */
     public function getName(): string
@@ -89,9 +80,7 @@ class MultiField extends FormElement implements FieldInterface, ArrayAccess, Cou
 
                 if (!$this->skipEmptyValue || $value != $field->getEmptyValue())
                 {
-                    $field->setFormName('');
                     $field->setValue($value);
-                    $field->setRequired(true);
                     $this->fields[] = $field;
                     $this->numberOfFields++;
                 }
@@ -255,5 +244,23 @@ class MultiField extends FormElement implements FieldInterface, ArrayAccess, Cou
     public function getIterator(): ArrayIterator
     {
         return new ArrayIterator($this->fields);
+    }
+
+    /**
+     * @return Field
+     */
+    private function createField(): Field
+    {
+        $field = call_user_func($this->factory);
+
+        if (!($field instanceof Field))
+        {
+            throw new RuntimeException(sprintf('The expected factory output is a %s object.', Field::class));
+        }
+
+        $field->setParent($this);
+        $field->setFormName('');
+        $field->setRequired(true);
+        return $field;
     }
 }

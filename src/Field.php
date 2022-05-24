@@ -10,17 +10,17 @@ class Field extends FormElement implements FieldInterface
     /**
      * @var string
      */
-    protected string $name = '';
+    private string $name = '';
 
     /**
      * @var mixed
      */
-    protected mixed $value;
+    private mixed $value;
 
     /**
      * @var array
      */
-    protected array $errors = [];
+    private array $errors = [];
 
     /**
      * @var bool
