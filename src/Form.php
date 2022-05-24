@@ -158,21 +158,41 @@ class Form extends FormElement implements ArrayAccess
      */
     public function getErrors(): array
     {
-        $errors = ['form' => $this->errors];
+        $errors = [];
+
+        if (!empty($this->errors))
+        {
+            $errors['form'] = $this->errors;
+        }
 
         foreach ($this->fields as $name => $field)
         {
-            $errors[$name] = $field->getErrors();
+            $fieldErrors = $field->getErrors();
+
+            if (!empty($fieldErrors))
+            {
+                $errors[$name] = $fieldErrors;
+            }
         }
 
         foreach ($this->subForms as $name => $subForm)
         {
-            $errors[$name] = $subForm->getErrors();
+            $formErrors = $subForm->getErrors();
+
+            if (!empty($formErrors))
+            {
+                $errors[$name] = $formErrors;
+            }
         }
 
         foreach ($this->multiForms as $name => $multiForm)
         {
-            $errors[$name] = $multiForm->getErrors();
+            $formErrors = $multiForm->getErrors();
+
+            if (!empty($formErrors))
+            {
+                $errors[$name] = $formErrors;
+            }
         }
 
         return $errors;

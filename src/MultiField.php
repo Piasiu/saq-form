@@ -42,6 +42,11 @@ class MultiField extends FormElement implements FieldInterface, ArrayAccess, Cou
     private bool $required;
 
     /**
+     * @var array
+     */
+    private array $errors = [];
+
+    /**
      * @param string $name
      * @param callable $factory
      * @param bool $skipEmptyValue
@@ -93,8 +98,11 @@ class MultiField extends FormElement implements FieldInterface, ArrayAccess, Cou
      */
     public function isValid(): bool
     {
+        $this->errors = [];
+
         if ($this->numberOfFields == 0 && $this->required)
         {
+            $this->errors[] = new Error(Error::IS_REQUIRED);
             return false;
         }
 
@@ -129,6 +137,26 @@ class MultiField extends FormElement implements FieldInterface, ArrayAccess, Cou
     /**
      * @inheritDoc
      */
+    public function getErrors(): array
+    {
+        $errors = $this->errors;
+
+        foreach ($this->fields as $field)
+        {
+            $fieldErrors = $field->getErrors();
+
+            if (!empty($fieldErrors))
+            {
+                $errors[] = $fieldErrors;
+            }
+        }
+
+        return $errors;
+    }
+
+    /**
+     * @inheritDoc
+     */
     public function getEmptyValue(): array
     {
         return [];
@@ -140,26 +168,6 @@ class MultiField extends FormElement implements FieldInterface, ArrayAccess, Cou
     public function isRequired(): bool
     {
         return $this->required;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function getErrors(): array
-    {
-        if ($this->numberOfFields == 0 && $this->required)
-        {
-            return [new Error(Error::IS_REQUIRED)];
-        }
-
-        $errors = [];
-
-        foreach ($this->fields as $field)
-        {
-            $errors[] = $field->getErrors();
-        }
-
-        return $errors;
     }
 
     /**
