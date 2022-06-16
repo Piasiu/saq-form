@@ -264,6 +264,14 @@ class Form extends FormElement implements ArrayAccess
         $this->action = $action;
     }
 
+    /**
+     * @return string
+     */
+    public function getEnctype(): string
+    {
+        return $this->enctype;
+    }
+
     public function encodingForFiles(): void
     {
         $this->enctype = self::ENCTYPE_FILE;
