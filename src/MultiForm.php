@@ -157,13 +157,13 @@ class MultiForm extends FormElement implements ArrayAccess, Countable, IteratorA
     {
         $errors = [];
 
-        foreach ($this->forms as $form)
+        foreach ($this->forms as $index => $form)
         {
             $formErrors = $form->getErrors();
 
             if (!empty($formErrors))
             {
-                $errors[] = $formErrors;
+                $errors[$index] = $formErrors;
             }
         }
 

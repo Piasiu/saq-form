@@ -141,13 +141,13 @@ class MultiField extends FormElement implements FieldInterface, ArrayAccess, Cou
     {
         $errors = $this->errors;
 
-        foreach ($this->fields as $field)
+        foreach ($this->fields as $index => $field)
         {
             $fieldErrors = $field->getErrors();
 
             if (!empty($fieldErrors))
             {
-                $errors[] = $fieldErrors;
+                $errors[$index] = $fieldErrors;
             }
         }
 
