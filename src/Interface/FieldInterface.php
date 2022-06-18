@@ -32,6 +32,11 @@ interface FieldInterface extends FormElementInterface
     /**
      * @return bool
      */
+    public function isTransparent(): bool;
+
+    /**
+     * @return bool
+     */
     public function isValid(): bool;
 
     /**

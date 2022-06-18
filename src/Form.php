@@ -137,7 +137,10 @@ class Form extends FormElement implements ArrayAccess
 
         foreach ($this->fields as $name => $field)
         {
-            $values[$name] = $field->getValue();
+            if (!$field->isTransparent())
+            {
+                $values[$name] = $field->getValue();
+            }
         }
 
         foreach ($this->subForms as $name => $subForm)

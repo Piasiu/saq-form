@@ -28,10 +28,14 @@ class Field extends FormElement implements FieldInterface
     private bool $required;
 
     /**
+     * @var bool
+     */
+    private bool $transparent;
+
+    /**
      * @var mixed
      */
     private mixed $emptyValue;
-
     /**
      * @var FilterInterface[]
      */
@@ -46,12 +50,14 @@ class Field extends FormElement implements FieldInterface
      * @param string $name
      * @param bool $required
      * @param mixed $emptyValue
+     * @param bool $transparent
      */
-    public function __construct(string $name, bool $required = false, mixed $emptyValue = '')
+    public function __construct(string $name, bool $required = false, mixed $emptyValue = '', bool $transparent = true)
     {
         $this->name = $name;
         $this->formName = $name;
         $this->required = $required;
+        $this->transparent = $transparent;
         $this->emptyValue = $emptyValue;
         $this->value = $emptyValue;
     }
@@ -151,6 +157,24 @@ class Field extends FormElement implements FieldInterface
     public function setRequired(bool $required): self
     {
         $this->required = $required;
+        return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function isTransparent(): bool
+    {
+        return $this->transparent;
+    }
+
+    /**
+     * @param bool $transparent
+     * @return Field
+     */
+    public function setTransparent(bool $transparent): Field
+    {
+        $this->transparent = $transparent;
         return $this;
     }
 
