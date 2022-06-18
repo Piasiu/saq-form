@@ -52,7 +52,7 @@ class Field extends FormElement implements FieldInterface
      * @param mixed $emptyValue
      * @param bool $transparent
      */
-    public function __construct(string $name, bool $required = false, mixed $emptyValue = '', bool $transparent = true)
+    public function __construct(string $name, bool $required = false, mixed $emptyValue = '', bool $transparent = false)
     {
         $this->name = $name;
         $this->formName = $name;
