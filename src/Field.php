@@ -91,7 +91,7 @@ class Field extends FormElement implements FieldInterface
         elseif ($this->isRequired())
         {
             $isValid = false;
-            $this->errors[] = new Error(Error::IS_REQUIRED);
+            $this->errors[] = [new Error(Error::IS_REQUIRED)];
         }
 
         return $isValid;
