@@ -18,20 +18,12 @@ class InArray extends Validator
      */
     public function isValid(mixed $value): bool
     {
-        if (!is_array($value))
+        if (!in_array($value, $this->values))
         {
-            $value = [$value];
+            $this->addError(self::NOT_IN_ARRAY);
+            return false;
         }
 
-        foreach ($value as $v)
-        {
-            if (!in_array($v, $this->values))
-            {
-                $this->addError(self::NOT_IN_ARRAY);
-                return false;
-            }
-        }
-        
         return true;
     }
 
