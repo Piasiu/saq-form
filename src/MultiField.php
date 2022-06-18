@@ -171,6 +171,14 @@ class MultiField extends FormElement implements FieldInterface, ArrayAccess, Cou
     }
 
     /**
+     * @inheritDoc
+     */
+    public function isTransparent(): bool
+    {
+        return false;
+    }
+
+    /**
      * @return Field[]
      */
     public function getFields(): array
