@@ -11,18 +11,14 @@ class Error
     private string $name;
 
     /**
-     * @var ErrorArgument[]
+     * @var string[]
      */
-    private array $arguments = [];
+    private array $arguments;
 
     public function __construct(string $name, array $arguments = [])
     {
         $this->name = $name;
-
-        foreach ($arguments as $name => $value)
-        {
-            $this->arguments[] = new ErrorArgument($name, $value);
-        }
+        $this->arguments = $arguments;
     }
 
     /**
@@ -34,7 +30,7 @@ class Error
     }
 
     /**
-     * @return ErrorArgument[]
+     * @return string[]
      */
     public function getArguments(): array
     {
