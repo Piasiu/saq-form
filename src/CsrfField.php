@@ -80,6 +80,14 @@ class CsrfField extends FormElement implements FieldInterface
     /**
      * @inheritDoc
      */
+    public function isTransparent(): bool
+    {
+        return true;
+    }
+
+    /**
+     * @inheritDoc
+     */
     public function isValid(): bool
     {
         if ($this->value == $_SESSION['csrf'][$this->salt])
