@@ -79,7 +79,7 @@ class Field extends FormElement implements FieldInterface
                 if (!$validator->isValid($this->value))
                 {
                     $isValid = false;
-                    $this->errors[] = $validator->getErrors();
+                    $this->errors = array_merge($this->errors, $validator->getErrors());
 
                     if ($validator->isInterrupt())
                     {
@@ -91,7 +91,7 @@ class Field extends FormElement implements FieldInterface
         elseif ($this->isRequired())
         {
             $isValid = false;
-            $this->errors[] = [new Error(Error::IS_REQUIRED)];
+            $this->errors[] = new Error(Error::IS_REQUIRED);
         }
 
         return $isValid;
