@@ -20,7 +20,7 @@ class Boolean implements FilterInterface
      */
     public function filter(mixed $value): string
     {
-        return $value === $this->trueValue ? $value : $this->falseValue;
+        return $value == $this->trueValue ? $value : $this->falseValue;
     }
 
     /**
