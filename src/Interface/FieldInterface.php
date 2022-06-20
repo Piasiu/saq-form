@@ -43,4 +43,52 @@ interface FieldInterface extends FormElementInterface
      * @return array
      */
     public function getErrors(): array;
+
+    /**
+     * @param string $name
+     * @return bool
+     */
+    public function hasFilter(string $name): bool;
+
+    /**
+     * @param string $name
+     * @return FilterInterface|null
+     */
+    public function getFilter(string $name): ?FilterInterface;
+
+    /**
+     * @param FilterInterface $filter
+     * @return FieldInterface
+     */
+    public function addFilter(FilterInterface $filter): FieldInterface;
+
+    /**
+     * @param string $name
+     * @return FieldInterface
+     */
+    public function removeFilter(string $name): FieldInterface;
+
+    /**
+     * @param string $name
+     * @return bool
+     */
+    public function hasValidator(string $name): bool;
+
+    /**
+     * @param string $name
+     * @return ValidatorInterface|null
+     */
+    public function getValidator(string $name): ?ValidatorInterface;
+
+    /**
+     * @param ValidatorInterface $validator
+     * @return FieldInterface
+     */
+    public function addValidator(ValidatorInterface $validator): FieldInterface;
+
+    /**
+     * @param string $name
+     * @return FieldInterface
+     */
+    public function removeValidator(string $name): FieldInterface;
 }

@@ -187,58 +187,68 @@ class Field extends FormElement implements FieldInterface
     }
 
     /**
-     * @param string $name
-     * @return FilterInterface|null
+     * @inheritDoc
      */
-    public function getFilter(string $name): ?FilterInterface
+    public function hasFilter(string $name): bool
     {
-        return isset($this->filters[$name]) ? $this->filters[$name] : null;
+        return isset($this->filters[$name]);
     }
 
     /**
-     * @param FilterInterface $filter
-     * @return $this
+     * @inheritDoc
      */
-    public function addFilter(FilterInterface $filter): self
+    public function getFilter(string $name): ?FilterInterface
+    {
+        return $this->hasFilter($name) ? $this->filters[$name] : null;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function addFilter(FilterInterface $filter): FieldInterface
     {
         $this->filters[$filter::class] = $filter;
         return $this;
     }
 
     /**
-     * @param string $name
-     * @return $this
+     * @inheritDoc
      */
-    public function removeFilter(string $name): self
+    public function removeFilter(string $name): FieldInterface
     {
         unset($this->filters[$name]);
         return $this;
     }
 
     /**
-     * @param string $name
-     * @return ValidatorInterface|null
+     * @inheritDoc
      */
-    public function getValidator(string $name): ?ValidatorInterface
+    public function hasValidator(string $name): bool
     {
-        return isset($this->validators[$name]) ? $this->validators[$name] : null;
+        return isset($this->validators[$name]);
     }
 
     /**
-     * @param ValidatorInterface $validator
-     * @return $this
+     * @inheritDoc
      */
-    public function addValidator(ValidatorInterface $validator): self
+    public function getValidator(string $name): ?ValidatorInterface
+    {
+        return $this->hasValidator($name) ? $this->validators[$name] : null;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function addValidator(ValidatorInterface $validator): FieldInterface
     {
         $this->validators[$validator::class] = $validator;
         return $this;
     }
 
     /**
-     * @param string $name
-     * @return $this
+     * @inheritDoc
      */
-    public function removeValidator(string $name): self
+    public function removeValidator(string $name): FieldInterface
     {
         unset($this->validators[$name]);
         return $this;
