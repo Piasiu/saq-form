@@ -75,16 +75,15 @@ class Decimal extends Validator
     }
 
     /**
-     * @param string $symbol
      * @param int $numberOfDigitsBeforeDot
      * @param int $numberOfDigitsAfterDot
      * @return Decimal
      */
-    public function setPattern(string $symbol, int $numberOfDigitsBeforeDot, int $numberOfDigitsAfterDot): Decimal
+    public function setPattern(int $numberOfDigitsBeforeDot, int $numberOfDigitsAfterDot): Decimal
     {
         if ($numberOfDigitsBeforeDot > 0 && $numberOfDigitsAfterDot > 0)
         {
-            $this->pattern = sprintf('-?\d{1,%s}(\%s\d{1,%s})?', $numberOfDigitsBeforeDot, $symbol, $numberOfDigitsAfterDot);
+            $this->pattern = sprintf('-?\d{1,%s}(\.\d{1,%s})?', $numberOfDigitsBeforeDot, $numberOfDigitsAfterDot);
         }
 
         return $this;
