@@ -3,14 +3,19 @@ namespace Saq\Form\Validator;
 
 use Saq\Form\Validator;
 
-class Number extends Validator
+class Decimal extends Validator
 {
-    const INVALID = 'numberInvalid';
-    const TOO_SMALL = 'numberTooSmall';
-    const TOO_LARGE = 'numberTooLarge';
-    const TOO_SMALL_INCLUSIVE = 'numberTooSmallInclusive';
-    const TOO_LARGE_INCLUSIVE = 'numberTooLargeInclusive';
+    const INVALID = 'decimalInvalid';
+    const TOO_SMALL = 'decimalTooSmall';
+    const TOO_LARGE = 'decimalTooLarge';
+    const TOO_SMALL_INCLUSIVE = 'decimalTooSmallInclusive';
+    const TOO_LARGE_INCLUSIVE = 'decimalTooLargeInclusive';
     
+    /**
+     * @var string
+     */
+    private string $pattern = '-?\d{1,3}(\.\d{1,2})?';
+
     /**
      * @var float|null
      */
@@ -31,7 +36,7 @@ class Number extends Validator
      */
     public function isValid(mixed $value): bool
     {
-        if (!@preg_match('/^\-?\d+\,?\.?\d*$/iu', $value))
+        if (!@preg_match('/^'.$this->pattern.'$/iu', $value))
         {
             $this->addError(self::INVALID);
             return false;
@@ -70,10 +75,26 @@ class Number extends Validator
     }
 
     /**
-     * @param float $minValue
-     * @return Number
+     * @param string $symbol
+     * @param int $numberOfDigitsBeforeDot
+     * @param int $numberOfDigitsAfterDot
+     * @return Decimal
      */
-    public function setMinValue(float $minValue): Number
+    public function setPattern(string $symbol, int $numberOfDigitsBeforeDot, int $numberOfDigitsAfterDot): Decimal
+    {
+        if ($numberOfDigitsBeforeDot > 0 && $numberOfDigitsAfterDot > 0)
+        {
+            $this->pattern = sprintf('-?\d{1,%s}(\%s\d{1,%s})?', $symbol, $numberOfDigitsBeforeDot, $numberOfDigitsAfterDot);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param float $minValue
+     * @return Decimal
+     */
+    public function setMinValue(float $minValue): Decimal
     {
         $this->minValue = $minValue;
         return $this;
@@ -89,9 +110,9 @@ class Number extends Validator
 
     /**
      * @param float $maxValue
-     * @return Number
+     * @return Decimal
      */
-    public function setMaxValue(float $maxValue): Number
+    public function setMaxValue(float $maxValue): Decimal
     {
         $this->maxValue = $maxValue;
         return $this;
@@ -107,9 +128,9 @@ class Number extends Validator
 
     /**
      * @param bool $inclusive
-     * @return Number
+     * @return Decimal
      */
-    public function setInclusive(bool $inclusive): Number
+    public function setInclusive(bool $inclusive): Decimal
     {
         $this->inclusive = $inclusive;
         return $this;
