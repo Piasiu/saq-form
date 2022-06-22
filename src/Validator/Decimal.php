@@ -1,5 +1,5 @@
 <?php
-namespace App\Field;
+namespace Saq\Form\Validator;
 
 use Saq\Form\Validator;
 
