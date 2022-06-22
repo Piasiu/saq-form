@@ -1,5 +1,5 @@
 <?php
-namespace Saq\Form\Validator;
+namespace App\Field;
 
 use Saq\Form\Validator;
 
@@ -84,7 +84,7 @@ class Decimal extends Validator
     {
         if ($numberOfDigitsBeforeDot > 0 && $numberOfDigitsAfterDot > 0)
         {
-            $this->pattern = sprintf('-?\d{1,%s}(\%s\d{1,%s})?', $symbol, $numberOfDigitsBeforeDot, $numberOfDigitsAfterDot);
+            $this->pattern = sprintf('-?\d{1,%s}(\%s\d{1,%s})?', $numberOfDigitsBeforeDot, $symbol, $numberOfDigitsAfterDot);
         }
 
         return $this;
