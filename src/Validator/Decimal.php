@@ -10,11 +10,6 @@ class Decimal extends Validator
     const TOO_LARGE = 'decimalTooLarge';
     const TOO_SMALL_INCLUSIVE = 'decimalTooSmallInclusive';
     const TOO_LARGE_INCLUSIVE = 'decimalTooLargeInclusive';
-    
-    /**
-     * @var string
-     */
-    private string $pattern = '-?\d{1,3}(\.\d{1,2})?';
 
     /**
      * @var float|null
@@ -36,14 +31,12 @@ class Decimal extends Validator
      */
     public function isValid(mixed $value): bool
     {
-        if (!@preg_match('/^'.$this->pattern.'$/iu', $value))
+        if (!@preg_match('/^-?\d+(\.\d+)?$/', $value))
         {
             $this->addError(self::INVALID);
             return false;
         }
         
-        $value = str_replace(',', '.', $value);
-
         if ($this->isInclusive())
         {
             if ($this->getMinValue() !== null && $value < $this->getMinValue())
@@ -72,21 +65,6 @@ class Decimal extends Validator
         }
 
         return true;
-    }
-
-    /**
-     * @param int $numberOfDigitsBeforeDot
-     * @param int $numberOfDigitsAfterDot
-     * @return Decimal
-     */
-    public function setPattern(int $numberOfDigitsBeforeDot, int $numberOfDigitsAfterDot): Decimal
-    {
-        if ($numberOfDigitsBeforeDot > 0 && $numberOfDigitsAfterDot > 0)
-        {
-            $this->pattern = sprintf('-?\d{1,%s}(\.\d{1,%s})?', $numberOfDigitsBeforeDot, $numberOfDigitsAfterDot);
-        }
-
-        return $this;
     }
 
     /**
