@@ -30,6 +30,12 @@ interface FieldInterface extends FormElementInterface
     public function isRequired(): bool;
 
     /**
+     * @param bool $required
+     * @return FieldInterface
+     */
+    public function setRequired(bool $required): FieldInterface;
+
+    /**
      * @return bool
      */
     public function isTransparent(): bool;

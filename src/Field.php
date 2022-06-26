@@ -151,8 +151,7 @@ class Field extends FormElement implements FieldInterface
     }
 
     /**
-     * @param bool $required
-     * @return $this
+     * @inheritDoc
      */
     public function setRequired(bool $required): self
     {

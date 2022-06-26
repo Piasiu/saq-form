@@ -95,6 +95,14 @@ class CsrfField extends FormElement implements FieldInterface
     /**
      * @inheritDoc
      */
+    public function setRequired(bool $required): self
+    {
+        return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
     public function isTransparent(): bool
     {
         return true;

@@ -173,6 +173,15 @@ class MultiField extends FormElement implements FieldInterface, ArrayAccess, Cou
     /**
      * @inheritDoc
      */
+    public function setRequired(bool $required): self
+    {
+        $this->required = $required;
+        return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
     public function isTransparent(): bool
     {
         return false;
