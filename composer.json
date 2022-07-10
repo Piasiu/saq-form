@@ -14,7 +14,8 @@
     ],
     "require": {
         "php": ">=8.0.0",
-        "ext-mbstring": "*"
+        "ext-mbstring": "*",
+        "google/recaptcha": "1.2"
     },
     "autoload": {
         "psr-4": {

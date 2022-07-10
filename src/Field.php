@@ -36,6 +36,7 @@ class Field extends FormElement implements FieldInterface
      * @var mixed
      */
     private mixed $emptyValue;
+
     /**
      * @var FilterInterface[]
      */
