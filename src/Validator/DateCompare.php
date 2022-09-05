@@ -60,10 +60,10 @@ class DateCompare extends ContextValidator
      */
     public function isValid(mixed $value): bool
     {
-        if ($this->getContext()->hasValue($this->fieldName))
+        if ($this->getContext()->hasField($this->fieldName))
         {
             $time = DateTime::createFromFormat($this->format, $value)->getTimestamp();
-            $otherTime = DateTime::createFromFormat($this->format, $this->getContext()->getValue($this->fieldName))->getTimestamp();
+            $otherTime = DateTime::createFromFormat($this->format, $this->getContext()->getField($this->fieldName)->getValue())->getTimestamp();
             
             if ($this->isInclusive())
             {

@@ -2,9 +2,10 @@
 namespace Saq\Form;
 
 use ArrayAccess;
+use Saq\Form\Interface\ContextInterface;
 use Saq\Form\Interface\FieldInterface;
 
-class Form extends FormElement implements ArrayAccess
+class Form extends FormElement implements ArrayAccess, ContextInterface
 {
     public const ENCTYPE_DEFAULT = 'application/x-www-form-urlencoded';
     public const ENCTYPE_FILE = 'multipart/form-data';

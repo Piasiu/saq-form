@@ -54,9 +54,9 @@ class IntegerCompare extends ContextValidator
      */
     public function isValid(mixed $value): bool
     {
-        if ($this->getContext()->hasValue($this->fieldName))
+        if ($this->getContext()->hasField($this->fieldName))
         {
-            $otherValue = $this->getContext()->getValue($this->fieldName);
+            $otherValue = $this->getContext()->getField($this->fieldName)->getValue();
             
             if ($this->inclusive)
             {

@@ -7,11 +7,11 @@ interface ContextInterface
      * @param string $name
      * @return bool
      */
-    public function hasValue(string $name): bool;
+    public function hasField(string $name): bool;
 
     /**
      * @param string $name
-     * @return string|array
+     * @return FieldInterface|null
      */
-    public function getValue(string $name): string|array;
+    public function getField(string $name): ?FieldInterface;
 }
