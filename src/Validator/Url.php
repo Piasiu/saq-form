@@ -13,6 +13,8 @@ class Url extends Validator
      */
     public function isValid(mixed $value): bool
     {
+        self::isValid($value);
+
         if (filter_var($value, FILTER_VALIDATE_URL) === false)
         {
             $this->addError(self::INVALID);

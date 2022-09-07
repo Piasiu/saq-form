@@ -18,6 +18,8 @@ class Text extends Validator
      */
     public function isValid(mixed $value): bool
     {
+        self::isValid($value);
+
         if (!is_string($value) || !@preg_match('/^['.$this->pattern.']+$/ui', $value))
         {
             $this->addError(self::INVALID);

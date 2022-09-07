@@ -73,8 +73,6 @@ class Field extends FormElement implements FieldInterface
 
         if ($this->value !== $this->getEmptyValue())
         {
-            $this->errors = [];
-
             foreach ($this->validators as $validator)
             {
                 if (!$validator->isValid($this->value))

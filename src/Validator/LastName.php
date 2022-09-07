@@ -13,6 +13,8 @@ class LastName extends Validator
      */
     public function isValid(mixed $value): bool
     {
+        self::isValid($value);
+
         if (!is_string($value) || !@preg_match('/^[\p{L}][-\p{L}\s\\\']*$/iu', $value))
         {
             $this->addError(self::INVALID);

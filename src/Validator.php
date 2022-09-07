@@ -43,6 +43,15 @@ abstract class Validator implements ValidatorInterface
     /**
      * @inheritDoc
      */
+    public function isValid(mixed $value): bool
+    {
+        $this->errors = [];
+        return true;
+    }
+
+    /**
+     * @inheritDoc
+     */
     public function isInterrupt(): bool
     {
         return $this->interrupt;

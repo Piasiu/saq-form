@@ -13,6 +13,8 @@ class Email extends Validator
      */
     public function isValid(mixed $value): bool
     {
+        self::isValid($value);
+
         if (filter_var($value, FILTER_VALIDATE_EMAIL) === false)
         {
             $this->addError(self::INVALID);

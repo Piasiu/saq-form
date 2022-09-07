@@ -18,6 +18,8 @@ class InArray extends Validator
      */
     public function isValid(mixed $value): bool
     {
+        self::isValid($value);
+
         if (!is_array($value))
         {
             $value = [$value];

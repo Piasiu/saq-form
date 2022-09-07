@@ -31,6 +31,8 @@ class Decimal extends Validator
      */
     public function isValid(mixed $value): bool
     {
+        self::isValid($value);
+
         if (!@preg_match('/^-?\d+(\.\d+)?$/', $value))
         {
             $this->addError(self::INVALID);

@@ -25,6 +25,8 @@ class StringLength extends Validator
      */
     public function isValid(mixed $value): bool
     {
+        self::isValid($value);
+
         if (!is_string($value))
         {
             $this->addError(self::INVALID);

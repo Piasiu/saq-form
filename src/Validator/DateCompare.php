@@ -60,6 +60,8 @@ class DateCompare extends ContextValidator
      */
     public function isValid(mixed $value): bool
     {
+        self::isValid($value);
+
         if ($this->getContext()->hasField($this->fieldName))
         {
             $time = DateTime::createFromFormat($this->format, $value)->getTimestamp();
