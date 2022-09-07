@@ -32,7 +32,7 @@ class Integer extends Validator
      */
     public function isValid(mixed $value): bool
     {
-        self::isValid($value);
+        parent::isValid($value);
 
         if (!@preg_match('/^(-)?[0-9]+$/', $value))
         {

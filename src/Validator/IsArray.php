@@ -9,7 +9,7 @@ class IsArray extends Validator
     
     public function isValid(mixed $value): bool
     {
-        self::isValid($value);
+        parent::isValid($value);
 
         if (!is_array($value))
         {

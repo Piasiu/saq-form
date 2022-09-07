@@ -13,7 +13,7 @@ class FirstName extends Validator
      */
     public function isValid(mixed $value): bool
     {
-        self::isValid($value);
+        parent::isValid($value);
 
         if (!is_string($value) || !@preg_match('/^[\p{L}][\p{L}\s\\\']*$/iu', $value))
         {

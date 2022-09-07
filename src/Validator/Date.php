@@ -35,7 +35,7 @@ class Date extends Validator
     
     public function isValid($value): bool
     {
-        self::isValid($value);
+        parent::isValid($value);
 
         if (!$this->isCorrectDate($value))
         {
