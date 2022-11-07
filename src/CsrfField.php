@@ -36,9 +36,11 @@ class CsrfField extends FormElement implements FieldInterface
     {
         $this->salt = $salt;
 
-        if (!array_key_exists('csrf', $_SESSION) || !array_key_exists($salt, $_SESSION['csrf']))
+        if (!array_key_exists('csrf', $_SESSION)
+            || !array_key_exists($salt, $_SESSION['csrf'])
+            || strlen($_SESSION['csrf'][$salt]) !== 32)
         {
-            $_SESSION['csrf'][$salt] = '';
+            $this->generateToken();
         }
     }
 
@@ -71,9 +73,7 @@ class CsrfField extends FormElement implements FieldInterface
      */
     public function getValue(): string
     {
-        $token = md5(time().$this->salt);
-        $_SESSION['csrf'][$this->salt] = $token;
-        return $token;
+        return $_SESSION['csrf'][$this->salt];
     }
 
     /**
@@ -113,7 +113,10 @@ class CsrfField extends FormElement implements FieldInterface
      */
     public function isValid(): bool
     {
-        if ($this->value == $_SESSION['csrf'][$this->salt])
+        $token = $_SESSION['csrf'][$this->salt];
+        $this->generateToken();
+
+        if ($this->value == $token)
         {
             return true;
         }
@@ -128,5 +131,10 @@ class CsrfField extends FormElement implements FieldInterface
     public function getErrors(): array
     {
         return $this->errors;
+    }
+
+    private function generateToken(): void
+    {
+        $_SESSION['csrf'][$this->salt] =  md5(time().$this->salt);
     }
 }
