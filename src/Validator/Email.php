@@ -5,7 +5,7 @@ use Saq\Form\Validator;
 
 class Email extends Validator
 {
-    const INVALID = 'emaillInvalid';
+    const INVALID = 'emailInvalid';
 
     /**
      * @param mixed $value

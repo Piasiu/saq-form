@@ -74,7 +74,7 @@ class Integer extends Validator
      * @param int $minValue
      * @return Integer
      */
-    public function setMinValue(int $minValue): Integer
+    public function setMinValue(int $minValue): self
     {
         $this->minValue = $minValue;
         return $this;
@@ -92,7 +92,7 @@ class Integer extends Validator
      * @param int $maxValue
      * @return Integer
      */
-    public function setMaxValue(int $maxValue): Integer
+    public function setMaxValue(int $maxValue): self
     {
         $this->maxValue = $maxValue;
         return $this;
@@ -110,7 +110,7 @@ class Integer extends Validator
      * @param bool $inclusive
      * @return Integer
      */
-    public function setInclusive(bool $inclusive): Integer
+    public function setInclusive(bool $inclusive): self
     {
         $this->inclusive = $inclusive;
         return $this;
